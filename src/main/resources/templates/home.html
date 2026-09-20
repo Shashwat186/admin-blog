@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="/fragments/header :: header"/>
+
+<div class="container admin-dashboard">
+
+    <section class="admin-hero">
+        <div>
+            <p class="eyebrow">Admin dashboard</p>
+            <h1>Publish your next story</h1>
+            <p class="subtitle">Create posts from here. The public-facing site can live in a separate repo while this dashboard stays private and easy to manage.</p>
+        </div>
+        <div class="hero-actions">
+            <a class="btn btn-primary" th:href="@{/newPost}">New post</a>
+            <a class="btn btn-default" th:href="@{/blog/user}">Preview public feed</a>
+        </div>
+    </section>
+
+    <div class="stats-row">
+        <div class="stat-card">
+            <span class="stat-label">Total posts</span>
+            <strong th:text="${pager.totalElements}">0</strong>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">This page</span>
+            <strong th:text="${pager.pageIndex} + ' / ' + ${pager.totalPages}">1 / 1</strong>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Status</span>
+            <strong>Live</strong>
+        </div>
+    </div>
+
+    <div class="panel panel-default dashboard-panel">
+        <div class="panel-heading">
+            <h2>Latest posts</h2>
+        </div>
+        <div class="panel-body">
+            <div th:replace="/fragments/posts :: posts"/>
+        </div>
+    </div>
+
+    <div th:replace="/fragments/pagination :: pagination(URLparameter='/home')"/>
+
+</div>
+
+<div th:replace="/fragments/footer :: footer"/>
+
+</body>
+</html>
